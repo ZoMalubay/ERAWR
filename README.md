@@ -67,8 +67,8 @@ emtech/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/kick-n-klean.git
-cd kick-n-klean
+git clone https://github.com/KanariYoi/ERAWR.git
+cd ERAWR
 ```
 
 ### 2. Python Virtual Environment
