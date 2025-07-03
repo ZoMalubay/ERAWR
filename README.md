@@ -93,6 +93,7 @@ Install Django, Django REST Framework, SimpleJWT, CORS headers, dj-rest-auth, dj
 
 ```bash
 pip install django djangorestframework djangorestframework-simplejwt django-cors-headers dj-rest-auth django-allauth
+python -m pip install requests
 ```
 
 If you have a `requirements.txt`, use:
