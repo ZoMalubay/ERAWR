@@ -69,6 +69,8 @@ emtech/
 ```bash
 git clone https://github.com/KanariYoi/ERAWR.git
 cd ERAWR
+git fetch origin
+git checkout master
 ```
 
 ### 2. Python Virtual Environment
