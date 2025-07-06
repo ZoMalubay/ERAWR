@@ -57,16 +57,12 @@ if (loginForm) {
 
 function showUserUI(username) {
   const userInfo = document.getElementById('user-info');
-  const logoutBtn = document.getElementById('logout-btn');
   if (userInfo) userInfo.textContent = username ? `Welcome, ${username}` : '';
-  if (logoutBtn) logoutBtn.style.display = username ? '' : 'none';
 }
 
 function hideUserUI() {
   const userInfo = document.getElementById('user-info');
-  const logoutBtn = document.getElementById('logout-btn');
   if (userInfo) userInfo.textContent = '';
-  if (logoutBtn) logoutBtn.style.display = 'none';
 }
 
 async function fetchProfileAndUpdateUI() {
@@ -89,15 +85,7 @@ async function fetchProfileAndUpdateUI() {
   }
 }
 
-const logoutBtn = document.getElementById('logout-btn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function() {
-    localStorage.removeItem('access');
-    localStorage.removeItem('refresh');
-    hideUserUI();
-    showNotification('Logged out!');
-  });
-}
+
 
 // Show user info on page load
 fetchProfileAndUpdateUI();
@@ -107,39 +95,53 @@ const userIcon = document.getElementById('user-icon');
 const editUserModal = document.getElementById('editUserModal');
 const accountModal = document.getElementById('accountModal');
 const closeEditUserModal = document.getElementById('closeEditUserModal');
+const loginModal = document.getElementById('loginModal');
 
 if (userIcon) {
   userIcon.addEventListener('click', async function(e) {
     e.preventDefault();
-    if (editUserModal) editUserModal.style.display = 'none';
-    if (accountModal) accountModal.style.display = 'none';
     const token = localStorage.getItem('access');
     if (token) {
-      if (editUserModal) {
-        const res = await fetch('http://127.0.0.1:8000/api/profile/', {
-          headers: { 'Authorization': 'Bearer ' + token }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          document.getElementById('edit-username').value = data.username;
-          document.getElementById('edit-email').value = data.email;
-          showUserUI(data.username);
-        } else {
-          hideUserUI();
-        }
-        editUserModal.style.display = 'flex';
+      // If on profile page, do nothing; otherwise, go to profile page
+      if (!window.location.pathname.endsWith('profile.html')) {
+        window.location.href = 'profile.html';
       }
     } else {
+      // Not logged in: open register/login modal as before
+      if (editUserModal) editUserModal.style.display = 'none';
       if (accountModal) accountModal.style.display = 'flex';
+      if (loginModal) loginModal.style.display = 'none';
+      document.body.classList.add('modal-blur');
+      document.documentElement.classList.add('modal-blur');
     }
   });
 }
+
+// Utility function to close all modals and remove blur
+function closeAllModals() {
+  if (editUserModal) editUserModal.style.display = 'none';
+  if (accountModal) accountModal.style.display = 'none';
+  if (loginModal) loginModal.style.display = 'none';
+  document.body.classList.remove('modal-blur');
+  document.documentElement.classList.remove('modal-blur');
+}
+
 if (closeEditUserModal) {
-  closeEditUserModal.addEventListener('click', function() {
-    if (editUserModal) editUserModal.style.display = 'none';
-    if (accountModal) accountModal.style.display = 'none';
-    document.body.classList.remove('modal-blur');
-    document.documentElement.classList.remove('modal-blur');
+  closeEditUserModal.addEventListener('click', closeAllModals);
+}
+if (editUserModal) {
+  editUserModal.addEventListener('click', function(e) {
+    if (e.target === editUserModal) closeAllModals();
+  });
+}
+if (accountModal) {
+  accountModal.addEventListener('click', function(e) {
+    if (e.target === accountModal) closeAllModals();
+  });
+}
+if (loginModal) {
+  loginModal.addEventListener('click', function(e) {
+    if (e.target === loginModal) closeAllModals();
   });
 }
 

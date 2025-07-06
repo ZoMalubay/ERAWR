@@ -2,13 +2,14 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer, ProfileSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import UserProfile
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -49,19 +50,44 @@ class ProfileView(APIView):
 
     def get(self, request):
         user = request.user
+        try:
+            profile = user.profile
+        except UserProfile.DoesNotExist:
+            profile = UserProfile.objects.create(user=user)
+        
         return Response({
             'username': user.username,
             'email': user.email,
+            'mobile_number': profile.mobile_number or '',
+            'most_order_used': profile.most_order_used or '',
         })
     
     def put(self, request):
         user = request.user
-        user.username = request.data.get('username', user.username)
-        user.email = request.data.get('email', user.email)
+        try:
+            profile = user.profile
+        except UserProfile.DoesNotExist:
+            profile = UserProfile.objects.create(user=user)
+        
+        # Update user fields
+        if 'username' in request.data:
+            user.username = request.data['username']
+        if 'email' in request.data:
+            user.email = request.data['email']
         user.save()
+        
+        # Update profile fields
+        if 'mobile_number' in request.data:
+            profile.mobile_number = request.data['mobile_number']
+        if 'most_order_used' in request.data:
+            profile.most_order_used = request.data['most_order_used']
+        profile.save()
+        
         return Response({
             'username': user.username,
             'email': user.email,
+            'mobile_number': profile.mobile_number or '',
+            'most_order_used': profile.most_order_used or '',
         }, status=status.HTTP_200_OK)
 
 class ChangePasswordView(APIView):

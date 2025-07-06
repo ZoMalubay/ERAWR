@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | Kick N' Klean</title>
+  <link rel="stylesheet" href="Main.css" />
+</head>
+<body class="profile-page">
+  <header>
+    <div class="logo">
+      <img src="./images/Icon - Final.png" alt="Kick N' Klean Logo" />
+    </div>
+    <nav>
+      <a href="Main.html" class="home-link">Home</a>
+      <a href="Services.html" class="services-link">Services</a>
+      <a href="#">FAQs</a>
+      <a href="#">About Us</a>
+    </nav>
+    <div class="header-icons">
+      <a href="#" class="cart-icon">
+        <img src="./images/cart.png" alt="Cart" />
+      </a>
+      <a href="#" class="menu-icon">
+        <img src="./images/icon.png" alt="Menu" />
+      </a>
+      <a href="#" class="user-icon" id="user-icon">
+        <img src="./images/user.PNG" alt="User" />
+      </a>
+              <span id="user-info" style="margin-left: 8px"></span>
+      </div>
+    </header>
+  <div class="header-spacer"></div>
+
+  <main class="main-content" style="height: calc(100vh - 80px); overflow: hidden;">
+    <div class="left-section" style="align-items: flex-start; padding-top: 20px; min-width: 320px; max-width: 400px; width: 45.4%; background-color: #ffffff;">
+      <div style="width: 180px; height: 180px; background: #343636; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px auto;">
+        <img src="./images/user.png" alt="Avatar" style="width: 120px; height: 120px; object-fit: contain; border-radius: 50%; background: #fff;" />
+      </div>
+      <ul style="list-style: none; padding: 0; width: 100%;">
+        <li style="margin-bottom: 24px;">
+          <span style="font-weight: 700; color: #343636; display: flex; align-items: center;">
+            <span style="font-size: 1.5rem; margin-right: 12px;">&#128100;</span> My Details
+          </span>
+        </li>
+        <li style="margin-bottom: 24px;">
+          <span style="font-weight: 600; color: #343636; display: flex; align-items: center; opacity: 0.7;">
+            <span style="font-size: 1.5rem; margin-right: 12px;">&#9881;&#65039;</span> Settings
+          </span>
+        </li>
+        <li style="margin-bottom: 24px;">
+          <span style="font-weight: 600; color: #343636; display: flex; align-items: center; opacity: 0.7;">
+            <span style="font-size: 1.5rem; margin-right: 12px;">&#128467;</span> History
+          </span>
+        </li>
+        <li>
+          <span id="sidebar-logout" style="font-weight: 600; color: #343636; display: flex; align-items: center; cursor: pointer;">
+            <span style="font-size: 1.5rem; margin-right: 12px;">&#128682;</span> Log Out
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="right-section" style="background: #343636; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 100vh;">
+      <div style="background: #fff; border-radius: 16px; box-shadow: 0 8px 40px 0 rgba(0,0,0,0.18); padding: 24px 24px 20px 24px; width: 100%; max-width: 480px; min-width: 320px;">
+        <div style="display: flex; align-items: center; margin-bottom: 24px;">
+          <img src="./images/user.png" alt="Avatar" style="width: 56px; height: 56px; object-fit: contain; border-radius: 50%; background: #fff; margin-right: 18px;" />
+          <div>
+            <div id="profile-username" style="font-weight: 800; font-size: 1.2rem; color: #343636;">Your Name</div>
+            <div id="profile-email" style="font-size: 1rem; color: #343636; opacity: 0.8;">yourname@gmail.com</div>
+          </div>
+        </div>
+        <form id="profile-form" class="modal-form" style="margin-top: 12px;">
+          <label class="modal-label" for="profile-name">Name</label>
+          <input class="modal-input" id="profile-name" type="text" placeholder="Name" required />
+          <label class="modal-label" for="profile-email-input">Email Account</label>
+          <input class="modal-input" id="profile-email-input" type="email" placeholder="Email" required />
+          <label class="modal-label" for="profile-mobile">Mobile No.</label>
+          <input class="modal-input" id="profile-mobile" type="text" placeholder="Mobile No." />
+          <label class="modal-label" for="profile-most-order">Most Order Used</label>
+          <input class="modal-input" id="profile-most-order" type="text" placeholder="Most Order Used" />
+          <button type="submit" class="modal-submit" style="margin-top: 12px;">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="notification" style="display: none; position: fixed; top: 32px; right: 32px; z-index: 9999; background: rgba(35, 35, 35, 0.85); color: #fff; padding: 16px 32px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);"></div>
+
+  <script src="menu.js"></script>
+  <script src="account.js"></script>
+  <script>
+    // Show username in header if logged in
+    function showUserUIOnHeader() {
+      const userInfo = document.getElementById('user-info');
+      const token = localStorage.getItem('access');
+      if (token) {
+        fetch('http://127.0.0.1:8000/api/profile/', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(res => res.json())
+        .then(data => {
+          userInfo.textContent = `Welcome, ${data.username}`;
+        });
+      } else {
+        userInfo.textContent = '';
+      }
+    }
+    showUserUIOnHeader();
+
+    // Fill profile form with user data
+    function fillProfileForm() {
+      const token = localStorage.getItem('access');
+      if (!token) return;
+      fetch('http://127.0.0.1:8000/api/profile/', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('profile-username').textContent = data.username;
+        document.getElementById('profile-email').textContent = data.email;
+        document.getElementById('profile-name').value = data.username;
+        document.getElementById('profile-email-input').value = data.email;
+        // Load mobile number and most order if they exist
+        if (data.mobile_number) {
+          document.getElementById('profile-mobile').value = data.mobile_number;
+        }
+        if (data.most_order_used) {
+          document.getElementById('profile-most-order').value = data.most_order_used;
+        }
+      });
+    }
+    fillProfileForm();
+
+    // Save changes
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('access');
+      if (!token) return;
+      const username = document.getElementById('profile-name').value;
+      const email = document.getElementById('profile-email-input').value;
+      const mobile = document.getElementById('profile-mobile').value;
+      const mostOrder = document.getElementById('profile-most-order').value;
+      fetch('http://127.0.0.1:8000/api/profile/', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ 
+          username, 
+          email, 
+          mobile_number: mobile,
+          most_order_used: mostOrder
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          document.getElementById('notification').textContent = 'Profile updated!';
+          document.getElementById('notification').style.display = 'block';
+          setTimeout(() => document.getElementById('notification').style.display = 'none', 2000);
+          fillProfileForm();
+          showUserUIOnHeader();
+        } else {
+          document.getElementById('notification').textContent = 'Failed to update profile.';
+          document.getElementById('notification').style.display = 'block';
+          setTimeout(() => document.getElementById('notification').style.display = 'none', 2000);
+        }
+      });
+    });
+
+    // Sidebar logout
+    document.getElementById('sidebar-logout').addEventListener('click', function() {
+      localStorage.removeItem('access');
+      localStorage.removeItem('refresh');
+      window.location.href = 'Main.html';
+    });
+
+    // User icon click: if logged in, stay on profile; if not, open modal
+    document.getElementById('user-icon').addEventListener('click', function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('access');
+      if (!token) {
+        document.getElementById('accountModal').style.display = 'flex';
+        document.body.classList.add('modal-blur');
+        document.documentElement.classList.add('modal-blur');
+      }
+    });
+  </script>
+  <script src="https://connect.facebook.net/en_US/sdk.js" async defer crossorigin="anonymous"></script>
+</body>
+</html> 
