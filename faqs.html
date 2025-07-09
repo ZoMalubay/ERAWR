@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | Kick N' Klean</title>
+  <link rel="stylesheet" href="faqs.css" />
+  <link rel="stylesheet" href="Main.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="./images/Icon - Final.png" alt="Kick N' Klean Logo" />
+    </div>
+    <nav>
+      <a href="Main.html" class="home-link">Home</a>
+      <a href="Services.html" class="services-link">Services</a>
+      <a href="faqs.html" class="faqs-link active">FAQs</a>
+      <a href="about.html" class="about-link">About Us</a>
+    </nav>
+    <div class="header-icons">
+      <a href="#" class="cart-icon"><img src="./images/cart.png" alt="Cart" /></a>
+      <a href="#" class="menu-icon" id="menu-icon"><img src="./images/icon.png" alt="Menu" /></a>
+      <a href="#" class="user-icon" id="user-icon"><img src="./images/user.png" alt="User" /></a>
+      <span id="user-info" style="margin-left: 8px"></span>
+    </div>
+  </header>
+  <div class="header-spacer"></div>
+  <main class="faqs-main">
+    <section class="faqs-left">
+      <h1>FAQs</h1>
+      <p>Frequently Asked Questions</p>
+      <img src="./images/faqs-icon.png" alt="FAQs Icon" class="faqs-icon" />
+    </section>
+    <section class="faqs-right">
+      <div class="faq-item">
+        <div class="faq-question">What services do you offer? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We offer professional shoe cleaning, restoration, and care for various materials.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you accept all types of shoes? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes, we accept most types of shoes including sneakers, leather, suede, and more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you restore or repaint shoes? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We offer restoration and repainting for select shoe types. Contact us for details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How long does the cleaning process take? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Cleaning usually takes 3-5 days depending on the service and shoe condition.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I send multiple pairs at once? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Absolutely! You can send as many pairs as you like in one order.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I book a service? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">You can book a service through our website or by contacting us directly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do we have a physical shop? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes, visit our contact page for our shop location and hours.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is your cleaning safe for delicate materials like suede/nubuck or mesh? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes, we use safe and specialized techniques for delicate materials.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I know when my shoes are ready? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">We will notify you via your preferred contact method when your shoes are ready.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Are you a legit business? <span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes, we are a registered and trusted local business.</div>
+      </div>
+    </section>
+  </main>
+  <script src="menu.js"></script>
+  <script src="account.js"></script>
+  <script>
+    // FAQ toggle logic
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        this.querySelector('.faq-toggle').textContent = answer.style.display === 'block' ? '-' : '+';
+      });
+    });
+    // Show username in header if logged in
+    function showUserUIOnHeader() {
+      const userInfo = document.getElementById('user-info');
+      const token = localStorage.getItem('access');
+      if (token) {
+        fetch('http://127.0.0.1:8000/api/profile/', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(res => res.json())
+        .then(data => {
+          userInfo.textContent = `Welcome, ${data.username}`;
+        });
+      } else {
+        userInfo.textContent = '';
+      }
+    }
+    showUserUIOnHeader();
+    // User icon click
+    document.getElementById('user-icon').addEventListener('click', function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('access');
+      if (token) {
+        window.location.href = 'profile.html';
+      } else {
+        document.getElementById('accountModal').style.display = 'flex';
+        document.body.classList.add('modal-blur');
+        document.documentElement.classList.add('modal-blur');
+      }
+    });
+    // Menu icon click
+    document.getElementById('menu-icon').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('sideMenuOverlay').classList.toggle('open');
+    });
+  </script>
+</body>
+</html> 

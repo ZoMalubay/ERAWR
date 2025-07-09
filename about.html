@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Kick N' Klean</title>
+  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" href="Main.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="./images/Icon - Final.png" alt="Kick N' Klean Logo" />
+    </div>
+    <nav>
+      <a href="Main.html" class="home-link">Home</a>
+      <a href="Services.html" class="services-link">Services</a>
+      <a href="faqs.html" class="faqs-link">FAQs</a>
+      <a href="about.html" class="about-link active">About Us</a>
+    </nav>
+    <div class="header-icons">
+      <a href="#" class="cart-icon"><img src="./images/cart.png" alt="Cart" /></a>
+      <a href="#" class="menu-icon" id="menu-icon"><img src="./images/icon.png" alt="Menu" /></a>
+      <a href="#" class="user-icon" id="user-icon"><img src="./images/user.png" alt="User" /></a>
+      <span id="user-info" style="margin-left: 8px"></span>
+    </div>
+  </header>
+  <div class="header-spacer"></div>
+  <main class="about-main">
+    <section class="about-left">
+      <img src="./images/about-us-icon.png" alt="About Us Icon" class="about-icon" />
+      <h1>ABOUT<br>KICK N' KLEAN</h1>
+      <p>What's our story?</p>
+    </section>
+    <section class="about-right">
+      <div class="about-desc">
+        <p>At Kick N' Klean, we believe that every pair of shoes tells a story — and it deserves to be cared for like it's brand new. What started as a passion for keeping kicks fresh has grown into a trusted local service for streetheads, professionals, and everyday shoe lovers who want their pairs cleaned, revived, and protected the right way.</p>
+        <p>We specialize in professional shoe cleaning services, from basic surface cleaning to deep restoration care for suede, nubuck, mesh, and more. Using premium products like Clyde Pro and following industry-safe techniques, we make sure your kicks get the treatment they truly deserve — minus the harsh chemicals and shortcuts.</p>
+        <p>Whether you're dealing with dirt, stains, odors, or that dreaded yellowing sole, we've got you covered. We're not just here to clean your shoes — we're here to extend their life, boost your confidence, and make sure your next step always looks better than the last.</p>
+        <ul>
+          <li>Detail-focused cleaning</li>
+          <li>Premium products & safe techniques</li>
+          <li>Affordable rates & bundle pricing</li>
+          <li>Trusted by real clients, sneaker collectors, and everyday wearers</li>
+          <li>Fast, friendly, and professional service</li>
+        </ul>
+        <div class="about-cta">
+          <strong>Let your shoes speak loud – but stay clean.</strong><br>
+          <span>Because at Kick N' Klean, it's more than just cleaning — it's care, done right.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="menu.js"></script>
+  <script src="account.js"></script>
+  <script>
+    // Show username in header if logged in
+    function showUserUIOnHeader() {
+      const userInfo = document.getElementById('user-info');
+      const token = localStorage.getItem('access');
+      if (token) {
+        fetch('http://127.0.0.1:8000/api/profile/', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(res => res.json())
+        .then(data => {
+          userInfo.textContent = `Welcome, ${data.username}`;
+        });
+      } else {
+        userInfo.textContent = '';
+      }
+    }
+    showUserUIOnHeader();
+    // User icon click
+    document.getElementById('user-icon').addEventListener('click', function(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('access');
+      if (token) {
+        window.location.href = 'profile.html';
+      } else {
+        document.getElementById('accountModal').style.display = 'flex';
+        document.body.classList.add('modal-blur');
+        document.documentElement.classList.add('modal-blur');
+      }
+    });
+    // Menu icon click
+    document.getElementById('menu-icon').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('sideMenuOverlay').classList.toggle('open');
+    });
+  </script>
+</body>
+</html> 

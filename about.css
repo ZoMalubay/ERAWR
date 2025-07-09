@@ -1,0 +1,80 @@
+body {
+  background: #fff;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+.about-main {
+  display: flex;
+  align-items: stretch;
+}
+.about-left {
+  flex: none;
+  width: 45%;
+  max-width: 587px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  border-right: 1px solid #e0e0e0;
+}
+.about-icon {
+  width: 200px;
+  margin-bottom: 24px;
+}
+.about-left h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  color: #343636;
+  text-align: center;
+}
+.about-left p {
+  font-size: 1.1rem;
+  color: #343636;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+.about-right {
+  flex: 2;
+  background: #343636;
+  color: #fff;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.about-desc {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.about-desc p {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+.about-desc ul {
+  margin: 18px 0 24px 24px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.about-cta {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 32px;
+  text-align: center;
+}
+nav a.about-link.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #666666;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+} 
