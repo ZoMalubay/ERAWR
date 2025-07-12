@@ -105,6 +105,13 @@ header.dimmed {
     max-width: 100%;
 }
 
+/* Enlarge logo on services page */
+body.services-page .logo img {
+    height: 350px;
+    width: 360px;
+    max-width: 100%;
+}
+
 nav {
     display: flex;
     gap: 40px;
@@ -217,7 +224,7 @@ nav a.services-link.active::after {
 }
 
 .right-section {
-    background-color: #343636;
+    background-color: #343636 !important;
     width: 59.2%;
     display: flex;
     justify-content: flex-start;

@@ -2,25 +2,30 @@ body {
   background: #fff;
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 .about-main {
   display: flex;
   align-items: stretch;
+  height: 100vh;
 }
 .about-left {
   flex: none;
-  width: 45%;
-  max-width: 587px;
+  width: 43.45%;
+  max-width: none;
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 0;
+  padding: 20px 0;
   border-right: 1px solid #e0e0e0;
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
 }
 .about-icon {
-  width: 200px;
+  width: 280px;
   margin-bottom: 24px;
 }
 .about-left h1 {
@@ -41,31 +46,59 @@ body {
   flex: 2;
   background: #343636;
   color: #fff;
-  padding: 60px 40px;
+  padding: 20px 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 .about-desc {
   max-width: 700px;
   margin: 0 auto;
+  padding: 20px 0;
 }
 .about-desc p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #fff;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-weight: 400;
+  line-height: 1.5;
+  text-align: justify;
 }
-.about-desc ul {
-  margin: 18px 0 24px 24px;
+.why-choose-us {
+  font-size: 1rem;
+  font-weight: 400;
   color: #fff;
-  font-size: 1.1rem;
-}
-.about-cta {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-top: 32px;
+  margin: 12px 0 10px 0;
   text-align: center;
+  padding-left: 64px;
+}
+
+.about-desc ul {
+  margin: 10px 0 20px 64px;
+  color: #fff;
+  font-size: 1rem;
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+.about-cta {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-top: 48px;
+  text-align: center;
+}
+.about-cta strong {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: -20px;
+}
+.about-cta span {
+  display: block;
+  font-size: 1.1rem;
+  margin-top: 0;
+  white-space: nowrap;
 }
 nav a.about-link.active::after {
   content: '';
@@ -77,4 +110,17 @@ nav a.about-link.active::after {
   position: absolute;
   left: 0;
   bottom: -8px;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.about-desc > * {
+  opacity: 0;
+  transform: translateX(120px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.about-desc .fade-in {
+  opacity: 1;
+  transform: translateX(0);
 } 
