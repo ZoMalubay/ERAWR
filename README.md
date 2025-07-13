@@ -109,6 +109,7 @@ pip install -r requirements.txt
 
 ```bash
 cd emtech_backend
+python manage.py makemigrations
 python manage.py migrate
 ```
 
