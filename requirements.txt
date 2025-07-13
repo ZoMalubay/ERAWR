@@ -1,3 +1,0 @@
-# This file points to the Django requirements
-# Railway will use the requirements.txt in emtech_backend/
--r emtech_backend/requirements.txt 
