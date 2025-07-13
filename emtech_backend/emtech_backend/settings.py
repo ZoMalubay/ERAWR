@@ -150,3 +150,13 @@ REST_USE_JWT = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kicknkleann.ph@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'zvwq rros cpip rukv'  # Replace with your app password
+DEFAULT_FROM_EMAIL = 'kicknkleann.ph@gmail.com'
+ADMIN_EMAIL = 'kicknkleann.ph@gmail.com'
