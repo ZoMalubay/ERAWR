@@ -496,6 +496,15 @@
       crossorigin="anonymous"
       src="https://connect.facebook.net/en_US/sdk.js"
     ></script>
+    <script>
+  fetch("/.netlify/functions/hello")
+    .then(res => res.json())
+    .then(data => {
+      console.log(data); // Should log { message: "Hello from Netlify Functions!" }
+      document.body.innerHTML += `<p style="text-align:center; color:green; font-weight:bold;">${data.message}</p>`;
+    })
+    .catch(err => console.error("Error:", err));
+</script>
     <!-- Pricing Guide Modal -->
     <div id="pricingGuideModal" class="modal" style="display: none">
       <span class="close" id="closePricingModal">&times;</span>
