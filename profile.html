@@ -6,6 +6,38 @@
     <title>Profile | Kick N' Klean</title>
     <link rel="stylesheet" href="Main.css" />
     <link rel="stylesheet" href="profile.css" />
+    <!-- Add Poppins font to head -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body.profile-page {
+        font-family: "Poppins", Arial, sans-serif;
+      }
+      .profile-tab,
+      #sidebar-logout {
+        cursor: pointer;
+        transition: background 0.18s, color 0.18s;
+        display: block;
+        padding: 6px 0 6px 0;
+        border-radius: 8px;
+      }
+      .profile-tab:hover,
+      #sidebar-logout:hover {
+        background: #f0f0f0;
+        color: #232323;
+      }
+      .profile-tab.active {
+        background: #e0e0e0;
+        color: #232323;
+      }
+      .order-history-scroll {
+        max-height: 420px;
+        overflow-y: auto;
+        padding-right: 8px;
+      }
+    </style>
   </head>
   <body class="profile-page">
     <header>
@@ -32,7 +64,6 @@
       </div>
     </header>
     <div class="header-spacer"></div>
-
     <main class="main-content">
       <div class="left-section">
         <div>
@@ -40,7 +71,7 @@
         </div>
         <ul>
           <li>
-            <span>
+            <span class="profile-tab" id="profile-details-tab">
               <img
                 src="./images/my-details.png"
                 alt="My Details"
@@ -55,22 +86,7 @@
             </span>
           </li>
           <li>
-            <span>
-              <img
-                src="./images/settings.png"
-                alt="Settings"
-                style="
-                  width: 28px;
-                  height: 28px;
-                  margin-right: 12px;
-                  vertical-align: middle;
-                "
-              />
-              Settings
-            </span>
-          </li>
-          <li>
-            <span>
+            <span class="profile-tab" id="profile-history-tab">
               <img
                 src="./images/history.png"
                 alt="History"
@@ -111,12 +127,22 @@
             </div>
           </div>
           <form id="profile-form" class="modal-form">
-            <label class="modal-label" for="profile-name">Name</label>
+            <label class="modal-label" for="profile-first-name"
+              >First Name</label
+            >
             <input
               class="modal-input"
-              id="profile-name"
+              id="profile-first-name"
               type="text"
-              placeholder="Name"
+              placeholder="First Name"
+              required
+            />
+            <label class="modal-label" for="profile-last-name">Last Name</label>
+            <input
+              class="modal-input"
+              id="profile-last-name"
+              type="text"
+              placeholder="Last Name"
               required
             />
             <label class="modal-label" for="profile-email-input"
@@ -136,17 +162,13 @@
               type="text"
               placeholder="Mobile No."
             />
-            <label class="modal-label" for="profile-most-order"
-              >Most Order Used</label
-            >
-            <input
-              class="modal-input"
-              id="profile-most-order"
-              type="text"
-              placeholder="Most Order Used"
-            />
             <button type="submit" class="modal-submit">Save Changes</button>
           </form>
+          <div
+            id="order-history-container"
+            class="order-history-scroll"
+            style="display: none"
+          ></div>
         </div>
       </div>
     </main>
@@ -155,6 +177,7 @@
 
     <script src="menu.js"></script>
     <script src="account.js"></script>
+    <script src="shared-cart.js"></script>
     <script>
       // Show username in header if logged in
       function showUserUIOnHeader() {
@@ -186,16 +209,14 @@
             document.getElementById("profile-username").textContent =
               data.username;
             document.getElementById("profile-email").textContent = data.email;
-            document.getElementById("profile-name").value = data.username;
+            document.getElementById("profile-first-name").value =
+              data.first_name || "";
+            document.getElementById("profile-last-name").value =
+              data.last_name || "";
             document.getElementById("profile-email-input").value = data.email;
-            // Load mobile number and most order if they exist
             if (data.mobile_number) {
               document.getElementById("profile-mobile").value =
                 data.mobile_number;
-            }
-            if (data.most_order_used) {
-              document.getElementById("profile-most-order").value =
-                data.most_order_used;
             }
           });
       }
@@ -208,10 +229,12 @@
           e.preventDefault();
           const token = localStorage.getItem("access");
           if (!token) return;
-          const username = document.getElementById("profile-name").value;
+          const first_name =
+            document.getElementById("profile-first-name").value;
+          const last_name = document.getElementById("profile-last-name").value;
+          const username = first_name + " " + last_name;
           const email = document.getElementById("profile-email-input").value;
           const mobile = document.getElementById("profile-mobile").value;
-          const mostOrder = document.getElementById("profile-most-order").value;
           fetch("http://127.0.0.1:8000/api/profile/", {
             method: "PUT",
             headers: {
@@ -220,9 +243,10 @@
             },
             body: JSON.stringify({
               username,
+              first_name,
+              last_name,
               email,
               mobile_number: mobile,
-              most_order_used: mostOrder,
             }),
           }).then((res) => {
             if (res.ok) {
@@ -260,25 +284,99 @@
           window.location.href = "Main.html";
         });
 
-      // User icon click: if logged in, stay on profile; if not, open modal
+      // Tab logic
+      function renderOrderHistory() {
+        const token = localStorage.getItem("access");
+        if (!token) {
+          document.getElementById("order-history-container").innerHTML =
+            "<p>Please log in to view your order history.</p>";
+          return;
+        }
+        document.getElementById("order-history-container").innerHTML =
+          '<div style="text-align:center;">Loading order history...</div>';
+        fetch("http://127.0.0.1:8000/api/orders/", {
+          headers: { Authorization: "Bearer " + token },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (!Array.isArray(data) || data.length === 0) {
+              document.getElementById("order-history-container").innerHTML =
+                '<div style="text-align:center;">No previous orders found.</div>';
+              return;
+            }
+            let html = '<h2 style="text-align:center;">Order History</h2>';
+            html += '<div class="order-history-list">';
+            data.forEach((order) => {
+              html += `
+            <div class="order-history-item" style="border:1px solid #eee; border-radius:10px; margin:18px 0; padding:18px; background:#fafbfc;">
+              <div><b>Order ID:</b> ${order.id}</div>
+              <div><b>Date:</b> ${
+                order.created_at
+                  ? new Date(order.created_at).toLocaleString()
+                  : ""
+              }</div>
+              <div><b>Name:</b> ${order.first_name} ${order.last_name}</div>
+              <div><b>Email:</b> ${order.email}</div>
+              <div><b>Payment:</b> ${order.payment_method}</div>
+              <div><b>Drop-off:</b> ${order.dropoff_date} at ${
+                order.dropoff_time
+              }</div>
+              <div><b>Order Summary:</b><br><pre style="white-space:pre-wrap;">${
+                order.order_summary
+              }</pre></div>
+              <div><b>Total:</b> ₱${order.total_amount}</div>
+            </div>
+          `;
+            });
+            html += "</div>";
+            document.getElementById("order-history-container").innerHTML = html;
+            document.getElementById("order-history-container").style.display =
+              "block";
+          })
+          .catch(() => {
+            document.getElementById("order-history-container").innerHTML =
+              '<div style="text-align:center; color:#c00;">Failed to load order history.</div>';
+            document.getElementById("order-history-container").style.display =
+              "block";
+          });
+      }
+
+      function setActiveTab(tab) {
+        document
+          .getElementById("profile-details-tab")
+          .classList.remove("active");
+        document
+          .getElementById("profile-history-tab")
+          .classList.remove("active");
+        if (tab === "details") {
+          document
+            .getElementById("profile-details-tab")
+            .classList.add("active");
+        } else if (tab === "history") {
+          document
+            .getElementById("profile-history-tab")
+            .classList.add("active");
+        }
+      }
+      // Set initial active tab on page load
+      setActiveTab("details");
       document
-        .getElementById("user-icon")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          const token = localStorage.getItem("access");
-          if (!token) {
-            document.getElementById("accountModal").style.display = "flex";
-            document.body.classList.add("modal-blur");
-            document.documentElement.classList.add("modal-blur");
-          }
+        .getElementById("profile-history-tab")
+        .addEventListener("click", function () {
+          document.getElementById("profile-form").style.display = "none";
+          document.getElementById("order-history-container").style.display =
+            "block";
+          setActiveTab("history");
+          renderOrderHistory();
         });
-      // Menu icon click
       document
-        .getElementById("menu-icon")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          document.getElementById("sideMenu").classList.toggle("open");
-          document.getElementById("sideMenuOverlay").classList.toggle("open");
+        .getElementById("profile-details-tab")
+        .addEventListener("click", function () {
+          document.getElementById("order-history-container").style.display =
+            "none";
+          document.getElementById("profile-form").style.display = "block";
+          setActiveTab("details");
+          fillProfileForm();
         });
     </script>
     <script

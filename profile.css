@@ -111,4 +111,11 @@ body.profile-page .right-section > div > div img {
   font-weight: 700;
   font-size: 1.1rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+@media (min-width: 1367px) {
+  body.profile-page .left-section {
+    width: 68.259%;
+    margin-left: 60px;
+    max-width: none;
+  }
 } 

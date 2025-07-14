@@ -46,13 +46,21 @@
           deserves a second chance. Let your kicks<br />
           speak clean!
         </p>
-        <button class="btn">Book a Service</button>
         <button class="btn">View Pricing Guide</button>
+        <!-- HERO SOCIALS -->
         <div class="socials">
-          <a href="https://facebook.com" target="_blank">
+          <a
+            href="https://www.facebook.com/kicknklean.ph"
+            target="_blank"
+            rel="noopener"
+          >
             <img src="./images/fb.png" alt="Facebook" />
           </a>
-          <a href="https://instagram.com" target="_blank">
+          <a
+            href="https://www.instagram.com/kicknklean.ph/"
+            target="_blank"
+            rel="noopener"
+          >
             <img src="./images/ig.png" alt="Instagram" />
           </a>
           <a href="mailto:contact@kicknklean.com">
@@ -226,29 +234,37 @@
       <ul class="side-menu-list">
         <li>
           <hr class="side-menu-divider" />
-          <a href="#">Home</a>
+          <a href="Main.html">Home</a>
         </li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="Services.html">Services</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="about.html">About Us</a></li>
         <li>
-          <a href="#care-guides">Care Guides</a>
+          <a href="Main.html#care-guides">Care Guides</a>
           <hr class="side-menu-divider" />
         </li>
       </ul>
       <div class="side-menu-socials">
-        <a href="https://facebook.com" target="_blank"
-          ><img src="./images/fb_gray.png" alt="Facebook"
-        /></a>
-        <a href="https://instagram.com" target="_blank"
-          ><img src="./images/ig_gray.png" alt="Instagram"
-        /></a>
-        <a href="mailto:contact@kicknklean.com"
-          ><img src="./images/mail_gray.png" alt="Email"
-        /></a>
-        <a href="+1234567890"
-          ><img src="./images/contact_gray.png" alt="Contact"
-        /></a>
+        <a
+          href="https://www.facebook.com/kicknklean.ph"
+          target="_blank"
+          rel="noopener"
+        >
+          <img src="./images/fb_gray.png" alt="Facebook" />
+        </a>
+        <a
+          href="https://www.instagram.com/kicknklean.ph/"
+          target="_blank"
+          rel="noopener"
+        >
+          <img src="./images/ig_gray.png" alt="Instagram" />
+        </a>
+        <a href="mailto:contact@kicknklean.com">
+          <img src="./images/mail_gray.png" alt="Email" />
+        </a>
+        <a href="+1234567890">
+          <img src="./images/contact_gray.png" alt="Contact" />
+        </a>
       </div>
     </nav>
     <script src="menu.js"></script>
@@ -361,26 +377,36 @@
             />
             <div class="footer-menu">
               <div class="footer-menu-title">MAIN MENU</div>
-              <a href="#" class="footer-menu-link">HOME</a>
-              <a href="#" class="footer-menu-link">SERVICES</a>
-              <a href="#" class="footer-menu-link">FAQs</a>
-              <a href="#" class="footer-menu-link">ABOUT US</a>
-              <a href="#" class="footer-menu-link">CARE GUIDES</a>
+              <a href="Main.html" class="footer-menu-link">HOME</a>
+              <a href="Services.html" class="footer-menu-link">SERVICES</a>
+              <a href="faqs.html" class="footer-menu-link">FAQs</a>
+              <a href="about.html" class="footer-menu-link">ABOUT US</a>
+              <a href="Main.html#care-guides" class="footer-menu-link"
+                >CARE GUIDES</a
+              >
             </div>
           </div>
           <div class="footer-socials">
-            <a href="https://facebook.com" target="_blank"
-              ><img src="./images/fb_gray.png" alt="Facebook"
-            /></a>
-            <a href="https://instagram.com" target="_blank"
-              ><img src="./images/ig_gray.png" alt="Instagram"
-            /></a>
-            <a href="mailto:contact@kicknklean.com"
-              ><img src="./images/mail_gray.png" alt="Email"
-            /></a>
-            <a href="+1234567890"
-              ><img src="./images/contact_gray.png" alt="Contact"
-            /></a>
+            <a
+              href="https://www.facebook.com/kicknklean.ph"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="./images/fb_gray.png" alt="Facebook" />
+            </a>
+            <a
+              href="https://www.instagram.com/kicknklean.ph/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="./images/ig_gray.png" alt="Instagram" />
+            </a>
+            <a href="mailto:contact@kicknklean.com">
+              <img src="./images/mail_gray.png" alt="Email" />
+            </a>
+            <a href="+1234567890">
+              <img src="./images/contact_gray.png" alt="Contact" />
+            </a>
           </div>
         </div>
         <div class="footer-col footer-col-center">
@@ -463,11 +489,150 @@
     ></div>
 
     <script src="account.js"></script>
+    <script src="shared-cart.js"></script>
     <script
       async
       defer
       crossorigin="anonymous"
       src="https://connect.facebook.net/en_US/sdk.js"
     ></script>
+    <!-- Pricing Guide Modal -->
+    <div id="pricingGuideModal" class="modal" style="display: none">
+      <span class="close" id="closePricingModal">&times;</span>
+      <div class="modal-images">
+        <img
+          class="modal-content"
+          src="./images/6e27912a-eca1-4d44-985d-15f4ce5585c4.jfif"
+          alt="Pricing Guide 1"
+          style="
+            max-width: 90vw;
+            max-height: 70vh;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.18);
+          "
+        />
+        <img
+          class="modal-content"
+          src="./images/a3b33726-875a-43ea-945c-df70b3deaf4c.jfif"
+          alt="Pricing Guide 2"
+          style="
+            max-width: 90vw;
+            max-height: 70vh;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.18);
+          "
+        />
+      </div>
+    </div>
+    <style>
+      .modal {
+        display: block;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        opacity: 1;
+        transition: none;
+        animation: none;
+        padding: 0;
+      }
+      .modal.show {
+        display: block;
+      }
+      .modal-images {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.18);
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        max-width: 800px;
+        width: 95vw;
+        margin: 0;
+      }
+      .modal-content {
+        margin: 0;
+        display: block;
+        max-width: 350px;
+        width: 100%;
+        max-height: 60vh;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.1);
+        object-fit: contain;
+        background: #fff;
+      }
+      .close {
+        position: absolute;
+        top: 30px;
+        right: 50px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10001;
+        transition: color 0.2s;
+      }
+      .close:hover {
+        color: #ffb300;
+      }
+      @media (max-width: 900px) {
+        .modal-images {
+          flex-direction: column;
+          max-width: 98vw;
+          padding: 16px 4px;
+        }
+        .modal-content {
+          max-width: 95vw;
+          max-height: 40vh;
+        }
+        .close {
+          top: 10px;
+          right: 20px;
+          font-size: 32px;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var modal = document.getElementById("pricingGuideModal");
+        var btn = document.querySelector(".btn");
+        var span = document.getElementById("closePricingModal");
+        function showModal() {
+          modal.classList.add("show");
+        }
+        function hideModal() {
+          modal.classList.remove("show");
+          setTimeout(function () {
+            modal.style.display = "none";
+          }, 300);
+        }
+        if (btn) {
+          btn.onclick = function () {
+            modal.style.display = "block";
+            setTimeout(showModal, 10);
+          };
+        }
+        span.onclick = function () {
+          hideModal();
+        };
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            hideModal();
+          }
+        };
+      });
+    </script>
   </body>
 </html>

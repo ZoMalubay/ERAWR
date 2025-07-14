@@ -126,6 +126,7 @@ nav a.faqs-link.active::after {
   position: absolute;
   left: 0;
   bottom: -8px;
+
 }
 
 /* PC-specific styles (screens larger than 1366px) */

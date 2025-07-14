@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import UserProfile
+from .models import UserProfile, Service, AddOn, Bundle, Order
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -19,13 +19,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
+    first_name = serializers.CharField(source='user.first_name')
+    last_name = serializers.CharField(source='user.last_name')
     email = serializers.CharField(source='user.email')
     mobile_number = serializers.CharField(required=False, allow_blank=True)
     most_order_used = serializers.CharField(required=False, allow_blank=True)
     
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'mobile_number', 'most_order_used')
+        fields = ('username', 'first_name', 'last_name', 'email', 'mobile_number', 'most_order_used')
     
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', {})
@@ -34,6 +36,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         # Update user fields
         if 'username' in user_data:
             user.username = user_data['username']
+        if 'first_name' in user_data:
+            user.first_name = user_data['first_name']
+        if 'last_name' in user_data:
+            user.last_name = user_data['last_name']
         if 'email' in user_data:
             user.email = user_data['email']
         user.save()
@@ -46,3 +52,24 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.save()
         
         return instance
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+        read_only_fields = ('user', 'created_at')
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ['id', 'name', 'price', 'description']
+
+class AddOnSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AddOn
+        fields = ['id', 'name', 'price', 'description']
+
+class BundleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bundle
+        fields = ['id', 'name', 'price', 'description']
