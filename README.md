@@ -111,6 +111,7 @@ pip install -r requirements.txt
 cd emtech_backend
 python manage.py makemigrations
 python manage.py migrate
+python ERAWR/emtech_backend/add_sample_data.py
 ```
 
 **b. Create a superuser (for admin access):**
