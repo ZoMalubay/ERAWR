@@ -1,198 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile | Kick N' Klean</title>
-  <link rel="stylesheet" href="Main.css" />
-  <link rel="stylesheet" href="profile.css" />
-</head>
-<body class="profile-page">
-  <header>
-    <div class="logo">
-      <img src="./images/Icon - Final.png" alt="Kick N' Klean Logo" />
-    </div>
-    <nav>
-      <a href="Main.html" class="home-link">Home</a>
-      <a href="Services.html" class="services-link">Services</a>
-      <a href="faqs.html" class="faqs-link">FAQs</a>
-      <a href="about.html" class="about-link">About Us</a>
-    </nav>
-    <div class="header-icons">
-      <a href="#" class="cart-icon">
-        <img src="./images/cart.png" alt="Cart" />
-      </a>
-      <a href="#" class="menu-icon" id="menu-icon">
-        <img src="./images/icon.png" alt="Menu" />
-      </a>
-      <a href="#" class="user-icon" id="user-icon">
-        <img src="./images/user.PNG" alt="User" />
-      </a>
-              <span id="user-info" style="margin-left: 8px"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | Kick N' Klean</title>
+    <link rel="stylesheet" href="Main.css" />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body class="profile-page">
+    <header>
+      <div class="logo">
+        <img src="./images/Icon - Final.png" alt="Kick N' Klean Logo" />
+      </div>
+      <nav>
+        <a href="Main.html" class="home-link">Home</a>
+        <a href="Services.html" class="services-link">Services</a>
+        <a href="faqs.html" class="faqs-link">FAQs</a>
+        <a href="about.html" class="about-link">About Us</a>
+      </nav>
+      <div class="header-icons">
+        <a href="#" class="cart-icon">
+          <img src="./images/cart.png" alt="Cart" />
+        </a>
+        <a href="#" class="menu-icon" id="menu-icon">
+          <img src="./images/icon.png" alt="Menu" />
+        </a>
+        <a href="#" class="user-icon" id="user-icon">
+          <img src="./images/user.PNG" alt="User" />
+        </a>
+        <span id="user-info" style="margin-left: 8px"></span>
       </div>
     </header>
-  <div class="header-spacer"></div>
+    <div class="header-spacer"></div>
 
-  <main class="main-content">
-    <div class="left-section">
-      <div>
-        <img src="./images/user.png" alt="Avatar" />
-      </div>
-      <ul>
-        <li>
-          <span>
-            <img src="./images/my-details.png" alt="My Details" style="width: 28px; height: 28px; margin-right: 12px; vertical-align: middle;" /> My Details
-          </span>
-        </li>
-        <li>
-          <span>
-            <img src="./images/settings.png" alt="Settings" style="width: 28px; height: 28px; margin-right: 12px; vertical-align: middle;" /> Settings
-          </span>
-        </li>
-        <li>
-          <span>
-            <img src="./images/history.png" alt="History" style="width: 28px; height: 28px; margin-right: 12px; vertical-align: middle;" /> History
-          </span>
-        </li>
-        <li>
-          <span id="sidebar-logout">
-            <img src="./images/logout.png" alt="Log Out" style="width: 28px; height: 28px; margin-right: 12px; vertical-align: middle;" /> Log Out
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="right-section">
-      <div>
+    <main class="main-content">
+      <div class="left-section">
         <div>
           <img src="./images/user.png" alt="Avatar" />
-          <div>
-            <div id="profile-username">Your Name</div>
-            <div id="profile-email">yourname@gmail.com</div>
-          </div>
         </div>
-        <form id="profile-form" class="modal-form">
-          <label class="modal-label" for="profile-name">Name</label>
-          <input class="modal-input" id="profile-name" type="text" placeholder="Name" required />
-          <label class="modal-label" for="profile-email-input">Email Account</label>
-          <input class="modal-input" id="profile-email-input" type="email" placeholder="Email" required />
-          <label class="modal-label" for="profile-mobile">Mobile No.</label>
-          <input class="modal-input" id="profile-mobile" type="text" placeholder="Mobile No." />
-          <label class="modal-label" for="profile-most-order">Most Order Used</label>
-          <input class="modal-input" id="profile-most-order" type="text" placeholder="Most Order Used" />
-          <button type="submit" class="modal-submit">Save Changes</button>
-        </form>
+        <ul>
+          <li>
+            <span>
+              <img
+                src="./images/my-details.png"
+                alt="My Details"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  margin-right: 12px;
+                  vertical-align: middle;
+                "
+              />
+              My Details
+            </span>
+          </li>
+          <li>
+            <span>
+              <img
+                src="./images/settings.png"
+                alt="Settings"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  margin-right: 12px;
+                  vertical-align: middle;
+                "
+              />
+              Settings
+            </span>
+          </li>
+          <li>
+            <span>
+              <img
+                src="./images/history.png"
+                alt="History"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  margin-right: 12px;
+                  vertical-align: middle;
+                "
+              />
+              History
+            </span>
+          </li>
+          <li>
+            <span id="sidebar-logout">
+              <img
+                src="./images/logout.png"
+                alt="Log Out"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  margin-right: 12px;
+                  vertical-align: middle;
+                "
+              />
+              Log Out
+            </span>
+          </li>
+        </ul>
       </div>
-    </div>
-  </main>
+      <div class="right-section">
+        <div>
+          <div>
+            <img src="./images/user.png" alt="Avatar" />
+            <div>
+              <div id="profile-username">Your Name</div>
+              <div id="profile-email">yourname@gmail.com</div>
+            </div>
+          </div>
+          <form id="profile-form" class="modal-form">
+            <label class="modal-label" for="profile-name">Name</label>
+            <input
+              class="modal-input"
+              id="profile-name"
+              type="text"
+              placeholder="Name"
+              required
+            />
+            <label class="modal-label" for="profile-email-input"
+              >Email Account</label
+            >
+            <input
+              class="modal-input"
+              id="profile-email-input"
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <label class="modal-label" for="profile-mobile">Mobile No.</label>
+            <input
+              class="modal-input"
+              id="profile-mobile"
+              type="text"
+              placeholder="Mobile No."
+            />
+            <label class="modal-label" for="profile-most-order"
+              >Most Order Used</label
+            >
+            <input
+              class="modal-input"
+              id="profile-most-order"
+              type="text"
+              placeholder="Most Order Used"
+            />
+            <button type="submit" class="modal-submit">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </main>
 
-  <div id="notification"></div>
+    <div id="notification"></div>
 
-  <script src="menu.js"></script>
-  <script src="account.js"></script>
-  <script>
-    // Show username in header if logged in
-    function showUserUIOnHeader() {
-      const userInfo = document.getElementById('user-info');
-      const token = localStorage.getItem('access');
-      if (token) {
-        fetch('http://127.0.0.1:8000/api/profile/', {
-          headers: { 'Authorization': 'Bearer ' + token }
-        })
-        .then(res => res.json())
-        .then(data => {
-          userInfo.textContent = `Welcome, ${data.username}`;
-        });
-      } else {
-        userInfo.textContent = '';
-      }
-    }
-    showUserUIOnHeader();
-
-    // Fill profile form with user data
-    function fillProfileForm() {
-      const token = localStorage.getItem('access');
-      if (!token) return;
-      fetch('http://127.0.0.1:8000/api/profile/', {
-        headers: { 'Authorization': 'Bearer ' + token }
-      })
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('profile-username').textContent = data.username;
-        document.getElementById('profile-email').textContent = data.email;
-        document.getElementById('profile-name').value = data.username;
-        document.getElementById('profile-email-input').value = data.email;
-        // Load mobile number and most order if they exist
-        if (data.mobile_number) {
-          document.getElementById('profile-mobile').value = data.mobile_number;
-        }
-        if (data.most_order_used) {
-          document.getElementById('profile-most-order').value = data.most_order_used;
-        }
-      });
-    }
-    fillProfileForm();
-
-    // Save changes
-    document.getElementById('profile-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const token = localStorage.getItem('access');
-      if (!token) return;
-      const username = document.getElementById('profile-name').value;
-      const email = document.getElementById('profile-email-input').value;
-      const mobile = document.getElementById('profile-mobile').value;
-      const mostOrder = document.getElementById('profile-most-order').value;
-      fetch('http://127.0.0.1:8000/api/profile/', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify({ 
-          username, 
-          email, 
-          mobile_number: mobile,
-          most_order_used: mostOrder
-        })
-      })
-      .then(res => {
-        if (res.ok) {
-          document.getElementById('notification').textContent = 'Profile updated!';
-          document.getElementById('notification').style.display = 'block';
-          setTimeout(() => document.getElementById('notification').style.display = 'none', 2000);
-          fillProfileForm();
-          showUserUIOnHeader();
+    <script src="menu.js"></script>
+    <script src="account.js"></script>
+    <script>
+      // Show username in header if logged in
+      function showUserUIOnHeader() {
+        const userInfo = document.getElementById("user-info");
+        const token = localStorage.getItem("access");
+        if (token) {
+          fetch("http://127.0.0.1:8000/api/profile/", {
+            headers: { Authorization: "Bearer " + token },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              userInfo.textContent = `Welcome, ${data.username}`;
+            });
         } else {
-          document.getElementById('notification').textContent = 'Failed to update profile.';
-          document.getElementById('notification').style.display = 'block';
-          setTimeout(() => document.getElementById('notification').style.display = 'none', 2000);
+          userInfo.textContent = "";
         }
-      });
-    });
-
-    // Sidebar logout
-    document.getElementById('sidebar-logout').addEventListener('click', function() {
-      localStorage.removeItem('access');
-      localStorage.removeItem('refresh');
-      window.location.href = 'Main.html';
-    });
-
-    // User icon click: if logged in, stay on profile; if not, open modal
-    document.getElementById('user-icon').addEventListener('click', function(e) {
-      e.preventDefault();
-      const token = localStorage.getItem('access');
-      if (!token) {
-        document.getElementById('accountModal').style.display = 'flex';
-        document.body.classList.add('modal-blur');
-        document.documentElement.classList.add('modal-blur');
       }
-    });
-    // Menu icon click
-    document.getElementById('menu-icon').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('sideMenu').classList.toggle('open');
-      document.getElementById('sideMenuOverlay').classList.toggle('open');
-    });
-  </script>
-  <script src="https://connect.facebook.net/en_US/sdk.js" async defer crossorigin="anonymous"></script>
-</body>
-</html> 
+      showUserUIOnHeader();
+
+      // Fill profile form with user data
+      function fillProfileForm() {
+        const token = localStorage.getItem("access");
+        if (!token) return;
+        fetch("http://127.0.0.1:8000/api/profile/", {
+          headers: { Authorization: "Bearer " + token },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("profile-username").textContent =
+              data.username;
+            document.getElementById("profile-email").textContent = data.email;
+            document.getElementById("profile-name").value = data.username;
+            document.getElementById("profile-email-input").value = data.email;
+            // Load mobile number and most order if they exist
+            if (data.mobile_number) {
+              document.getElementById("profile-mobile").value =
+                data.mobile_number;
+            }
+            if (data.most_order_used) {
+              document.getElementById("profile-most-order").value =
+                data.most_order_used;
+            }
+          });
+      }
+      fillProfileForm();
+
+      // Save changes
+      document
+        .getElementById("profile-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const token = localStorage.getItem("access");
+          if (!token) return;
+          const username = document.getElementById("profile-name").value;
+          const email = document.getElementById("profile-email-input").value;
+          const mobile = document.getElementById("profile-mobile").value;
+          const mostOrder = document.getElementById("profile-most-order").value;
+          fetch("http://127.0.0.1:8000/api/profile/", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({
+              username,
+              email,
+              mobile_number: mobile,
+              most_order_used: mostOrder,
+            }),
+          }).then((res) => {
+            if (res.ok) {
+              document.getElementById("notification").textContent =
+                "Profile updated!";
+              document.getElementById("notification").style.display = "block";
+              setTimeout(
+                () =>
+                  (document.getElementById("notification").style.display =
+                    "none"),
+                2000
+              );
+              fillProfileForm();
+              showUserUIOnHeader();
+            } else {
+              document.getElementById("notification").textContent =
+                "Failed to update profile.";
+              document.getElementById("notification").style.display = "block";
+              setTimeout(
+                () =>
+                  (document.getElementById("notification").style.display =
+                    "none"),
+                2000
+              );
+            }
+          });
+        });
+
+      // Sidebar logout
+      document
+        .getElementById("sidebar-logout")
+        .addEventListener("click", function () {
+          localStorage.removeItem("access");
+          localStorage.removeItem("refresh");
+          window.location.href = "Main.html";
+        });
+
+      // User icon click: if logged in, stay on profile; if not, open modal
+      document
+        .getElementById("user-icon")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const token = localStorage.getItem("access");
+          if (!token) {
+            document.getElementById("accountModal").style.display = "flex";
+            document.body.classList.add("modal-blur");
+            document.documentElement.classList.add("modal-blur");
+          }
+        });
+      // Menu icon click
+      document
+        .getElementById("menu-icon")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("sideMenu").classList.toggle("open");
+          document.getElementById("sideMenuOverlay").classList.toggle("open");
+        });
+    </script>
+    <script
+      src="https://connect.facebook.net/en_US/sdk.js"
+      async
+      defer
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
